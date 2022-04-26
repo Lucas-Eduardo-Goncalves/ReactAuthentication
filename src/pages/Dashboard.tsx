@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../context/AuthContext"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import { api } from "../services/api";
 
 interface schoolsProps {
@@ -7,7 +8,7 @@ interface schoolsProps {
 }
 
 export function Dashboard() {
-  const { user, isAuthenticated } = useContext(AuthContext);
+  const { user, isAuthenticated } = useAuth();
   const [schools, setSchools] = useState<schoolsProps[]>([] as schoolsProps[])
 
   useEffect(() => {
@@ -18,6 +19,8 @@ export function Dashboard() {
   return (
     <>
       <h1>dashboard</h1>
+
+      <Link to="/home">Home</Link>
 
       {schools?.map(school => (
         <p 
